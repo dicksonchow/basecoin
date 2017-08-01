@@ -26,6 +26,14 @@ func NewBonsai(tree merkle.Tree) *Bonsai {
 }
 
 // Get matches the signature of KVStore
+func (b *Bonsai) Proof(key []byte) (value []byte, proof []byte, exists bool) {
+	// TODO: Think better.
+	return b.Tree.Proof(key)
+}
+
+// TODO: ProofList, Proof*
+
+// Get matches the signature of KVStore
 func (b *Bonsai) Get(key []byte) []byte {
 	_, value, _ := b.Tree.Get(key)
 	return value

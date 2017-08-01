@@ -73,4 +73,4 @@ clean:
 fresh: clean get_vendor_deps install
 	@if [[ `git status -s` ]]; then echo; echo "Warning: uncommited changes"; git status -s; fi
 
-.PHONY: all build install test test_cli test_unit get_vendor_deps build-docker clean fresh benchmark
+.PHONY: all build install test test_cli test_unit get_vendor_deps build-docker clean fresh benchmark tools
