@@ -181,6 +181,17 @@ func (s *Store) Query(reqQuery abci.RequestQuery) (resQuery abci.ResponseQuery) 
 			resQuery.Value = value
 		}
 
+	case "/list":
+		// do list queries
+		// accepts (first, last, limit)
+		fallthrough
+	case "/first":
+		// accepts (first, last)
+		fallthrough
+	case "/last":
+		// accepts (first, last)
+		fallthrough
+
 	default:
 		resQuery.Code = abci.CodeType_UnknownRequest
 		resQuery.Log = cmn.Fmt("Unexpected Query path: %v", reqQuery.Path)
