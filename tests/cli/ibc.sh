@@ -175,7 +175,7 @@ test04SendIBCPacket() {
     RECV=$(BC_HOME=${CLIENT_2} getAddr $POOR)
 
     TX=$(echo qwertyuiop | ${CLIENT_EXE} tx send --amount=20002mycoin \
-        --to=${CHAIN_ID_2}::${RECV} --name=$RICH)
+        --sequence=1 --to=${CHAIN_ID_2}::${RECV} --name=$RICH)
     txSucceeded $? "$TX" "${CHAIN_ID_2}::${RECV}"
     # quit early if there is no point in more tests
     if [ $? != 0 ]; then echo "aborting!"; return 1; fi
@@ -209,7 +209,7 @@ test05ReceiveIBCPacket() {
     export BC_HOME=${CLIENT_2}
 
     # make some credit, so we can accept the packet
-    TX=$(echo qwertyuiop | ${CLIENT_EXE} tx credit --amount=60006mycoin --to=$CHAIN_ID_1:: --name=$RICH)
+    TX=$(echo qwertyuiop | ${CLIENT_EXE} tx credit --amount=60006mycoin --sequence=1 --to=$CHAIN_ID_1:: --name=$RICH)
     txSucceeded $? "$TX" "${CHAIN_ID_1}::"
     checkAccount $CHAIN_ID_1:: "60006"
 
